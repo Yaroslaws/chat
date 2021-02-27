@@ -3,6 +3,7 @@ package code.chat.controller;
 import code.chat.Repo.MessageRepo;
 import code.chat.domain.Message;
 import code.chat.domain.Views;
+import code.chat.service.MesService;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +13,22 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-@RequestMapping("message")
+@RequestMapping(value = "message", produces = "application/json")
 public class MessageController {
 
     private final MessageRepo messageRepo;
+    private final MesService mesService;
 
     @Autowired
-    public MessageController(MessageRepo messageRepo) {
+    public MessageController(MessageRepo messageRepo, MesService mesService) {
         this.messageRepo = messageRepo;
+        this.mesService = mesService;
     }
 
     @GetMapping
-    @JsonView(Views.IdName.class)
     public List<Message> list() {
+
+        mesService.getAllText();
         return messageRepo.findAll();
     }
 
@@ -33,12 +37,9 @@ public class MessageController {
         return message;
     }
 
-
     @PostMapping
     public Message create(@RequestBody Message message) {
-
         message.setCreationDate(LocalDateTime.now());
-
         return messageRepo.save(message);
     }
 

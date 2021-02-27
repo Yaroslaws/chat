@@ -19,7 +19,7 @@ public class Message {
     @JsonView(Views.IdName.class)
     private Long id;
     @JsonView(Views.IdName.class)
-    private String text;
+    private String title;
 
     @Column(updatable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
@@ -42,11 +42,11 @@ public class Message {
         this.id = id;
     }
 
-    public String getText() {
-        return text;
+    public String getTitle() {
+        return title;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
