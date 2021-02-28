@@ -2,9 +2,7 @@ package code.chat.controller;
 
 import code.chat.Repo.MessageRepo;
 import code.chat.domain.Message;
-import code.chat.domain.Views;
 import code.chat.service.MesService;
-import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +25,6 @@ public class MessageController {
 
     @GetMapping
     public List<Message> list() {
-
         mesService.getAllText();
         return messageRepo.findAll();
     }
@@ -45,12 +42,12 @@ public class MessageController {
 
     @PutMapping("{id}")
     public Message update(
-            @PathVariable("id") Message messageFromDb,
+            @PathVariable("id") Message messagefromDb,
             @RequestBody Message message) {
 
-        BeanUtils.copyProperties(message, messageFromDb, "id");
+        BeanUtils.copyProperties(message, messagefromDb, "id");
 
-        return messageRepo.save(messageFromDb);
+        return messageRepo.save(messagefromDb);
     }
 
     @DeleteMapping("{id}")
