@@ -4,7 +4,9 @@ import code.chat.domain.Food;
 import code.chat.domain.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Service;
 
-public interface FoodRepo extends JpaRepository<Food, Long>, JpaSpecificationExecutor<Food> {
+@Service
+public interface FoodRepo extends JpaRepository<Food, Long> {
 
 }

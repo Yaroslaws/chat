@@ -16,6 +16,7 @@ ChatApplication {
 		beanService.startEngine();
 		beanService.startEngine();
 
+
 	}
 
 }

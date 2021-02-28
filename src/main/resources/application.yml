@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: graphql-todo-app
+server:
+  port: 8080
+graphql:
+  playground:
+    mapping: /playground
+graphiql:
+  enabled: true
+  cdn:
+    enabled: false
+    version: 0.17.5
+
+graphql.playground:
+  enabled: true
+  cdn:
+    enabled: false
+
+
+
+
+
