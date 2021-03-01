@@ -3,21 +3,20 @@ package code.chat.service;
 import code.chat.Repo.FoodRepo;
 import code.chat.domain.Food;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Service
+
+@Component
 public class FoodService implements GraphQLQueryResolver {
 
-    private final FoodRepo foodRepo;
+    @Autowired
+    private  FoodRepo foodRepo;
 
-    public FoodService(FoodRepo foodRepo) {
-        this.foodRepo = foodRepo;
-    }
-
-    public List<Food> getAllFood() {
-        return foodRepo.findAll();
+    public Food getFood(Long id) {
+        return foodRepo.getOne(id);
     };
 
 }

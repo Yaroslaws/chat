@@ -1,0 +1,10 @@
+
+type Food {
+    id:String!
+    title:String
+    creationDate:String
+}
+
+type Query {
+    getFood(id: ID): Food
+}
