@@ -12,9 +12,9 @@ ChatApplication {
 
 	public static void main(String[] args) throws InterruptedException {
 	ConfigurableApplicationContext context = SpringApplication.run(ChatApplication.class, args);
-//		MyServiceBean beanService = context.getBean(MyServiceBean.class);
-//		beanService.startEngine();
-//		beanService.startEngine();
+		MyServiceBean beanService = context.getBean(MyServiceBean.class);
+		beanService.startEngine();
+		beanService.startEngine();
 
 
 	}
