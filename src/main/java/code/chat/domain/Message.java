@@ -5,14 +5,21 @@ import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Entity
 @Table
 @Data
 @EqualsAndHashCode(of = {"id"})
-public class Message {
+public class Message  {
+
+    public Message(Long id, String title, LocalDate creationDate) {
+        this.id = id;
+        this.title = title;
+        this.creationDate = creationDate;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,16 +28,18 @@ public class Message {
     @JsonView(Views.IdName.class)
     private String title;
 
-    @Column(updatable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonView(Views.FullMessage.class)
-    private LocalDateTime creationDate;
+    private LocalDate creationDate;
 
-    public LocalDateTime getCreationDate() {
+    public Message() {
+
+    }
+
+    public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
+    public void setCreationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
     }
 

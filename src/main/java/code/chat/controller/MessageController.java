@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class MessageController {
 
     @PostMapping
     public Message create(@RequestBody Message message) {
-        message.setCreationDate(LocalDateTime.now());
+        message.setCreationDate(LocalDate.now());
         return messageRepo.save(message);
     }
 
