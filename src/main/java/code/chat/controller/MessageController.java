@@ -1,34 +1,32 @@
 package code.chat.controller;
 
 import code.chat.Repo.MessageRepo;
+import code.chat.Repo.UserDetailsRepo;
 import code.chat.domain.Message;
 import code.chat.service.MesService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "message", produces = "application/json")
 public class MessageController {
 
     private final MessageRepo messageRepo;
+    private final UserDetailsRepo userDetailsRepo;
     private final MesService mesService;
 
     @Autowired
-    public MessageController(MessageRepo messageRepo, MesService mesService) {
+    public MessageController(MessageRepo messageRepo, MesService mesService, UserDetailsRepo userDetailsRepo, MesService mesService1) {
         this.messageRepo = messageRepo;
-        this.mesService = mesService;
+        this.userDetailsRepo = userDetailsRepo;
+        this.mesService = mesService1;
     }
 
-    @GetMapping
-    public List<Message> list() {
-        mesService.getAllText();
-        return messageRepo.findAll();
-    }
 
     @GetMapping("{id}")
     public Message getOne(@PathVariable("id") Message message) {
@@ -36,9 +34,8 @@ public class MessageController {
     }
 
     @PostMapping
-    public Message create(@RequestBody Message message) {
-        message.setCreationDate(LocalDate.now());
-        return messageRepo.save(message);
+    public ResponseEntity<Message> saveMessage(@RequestParam String text) throws InterruptedException {
+        return mesService.saveMessage(text);
     }
 
     @PutMapping("{id}")

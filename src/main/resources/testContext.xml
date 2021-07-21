@@ -1,0 +1,28 @@
+<!-- Для декларативного управления транзакциями с помощью @Transactional -->
+<!--возможно это не нужно)-->
+<tx:annotation-driven/>
+
+        <!-- Встроенная тестовая база данных HSQLDB -->
+<jdbc:embedded-database id="dataSource" />
+
+        <!-- перзистенс-модуль -->
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+<property name="persistenceProviderClass" value="org.hibernate.ejb.HibernatePersistence"/>
+<property name="dataSource" ref="dataSource"/>
+<property name="packagesToScan" value="ru.kacit.commons.test.dbunit"/> <!-- пакет, в котором находятся доменные классы -->
+<property name="jpaPropertyMap">
+    <map>
+        <entry key="hibernate.show_sql" value="true"/>
+        <entry key="hibernate.format_sql" value="true"/>
+        <entry key="hibernate.hbm2ddl.auto" value="create"/>
+    </map>
+</property>
+</bean>
+
+        <!-- Типовой менеджер транзакций -->
+<bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
+<property name="entityManagerFactory" ref="entityManagerFactory"/>
+</bean>
+
+        <!-- Тестируемый DAO -->
+<bean class="ru.kacit.commons.test.dbunit.JpaPersonDao" />

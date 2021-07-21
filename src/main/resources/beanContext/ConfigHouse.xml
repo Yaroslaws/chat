@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="house" class="code.chat.beans.House" autowire="byType">
+        <property name="countFlats" value="5"/>
+        <property name="countFLor" value="2"/>
+    </bean>
+
+    <bean id="address" class="code.chat.beans.Address">
+        <constructor-arg index="0" name="street" value="Lenina"/>
+        <constructor-arg index="1" name="numberOfHouse" value="2"/>
+    </bean>
+
+<!--    <bean id="address2" class="code.chat.beans.Address">-->
+<!--        <constructor-arg index="0" name="street" value="Dikogo"/>-->
+<!--        <constructor-arg index="1" name="numberOfHouse" value="5"/>-->
+<!--    </bean>-->
+
+</beans>

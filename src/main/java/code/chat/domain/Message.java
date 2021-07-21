@@ -1,13 +1,17 @@
 package code.chat.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -21,10 +25,18 @@ public class Message  {
         this.creationDate = creationDate;
     }
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @JsonView(Views.IdName.class)
     private Long id;
+
+
+
+    @ManyToOne()
+    @JoinColumn(name="user_id")
+    private User user;
+
     @JsonView(Views.IdName.class)
     private String title;
 
@@ -34,6 +46,8 @@ public class Message  {
     public Message() {
 
     }
+
+
 
     public LocalDate getCreationDate() {
         return creationDate;

@@ -1,29 +1,23 @@
 package code.chat.controller;
 
-import code.chat.Repo.MessageRepo;
+import code.chat.domain.Message;
 import code.chat.service.MesService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
-@RequestMapping("/")
+import java.util.List;
+
+@RestController
+@RequestMapping("/test")
+@RequiredArgsConstructor
 public class MainController {
 
-    private final MessageRepo messageRepo;
-
-    public MainController(MessageRepo messageRepo) {
-        this.messageRepo = messageRepo;
-    }
-
-    @Autowired
-    MesService mesService;
+    final private MesService mesService;
 
     @GetMapping
-    public String main() {
-        mesService.nameByCourse();
-        mesService.getMessage("привет");
-        return "1";
+    public List<Message> main() {
+        return mesService.test();
     }
 }

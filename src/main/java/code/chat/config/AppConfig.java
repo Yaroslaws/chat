@@ -9,9 +9,12 @@ import graphql.execution.instrumentation.Instrumentation;
 import graphql.execution.instrumentation.tracing.TracingInstrumentation;
 import graphql.schema.GraphQLObjectType;
 import graphql.schema.GraphQLSchema;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 @Configuration
 public class AppConfig {
@@ -26,6 +29,7 @@ public class AppConfig {
     public MyServiceBean myServiceBeanCloneConfiguration() {
         return new BeanCloneService();
     }
+
 
 
 }

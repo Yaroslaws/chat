@@ -11,6 +11,8 @@ public class ChatApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		float d = 1/10;
+		System.out.println("Lol " + d);
 	}
 
 }
